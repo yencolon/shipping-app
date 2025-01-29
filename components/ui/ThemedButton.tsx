@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { Button, GestureResponderEvent, Pressable, Text, View } from "react-native";
 
 interface ThemedButtonProps extends React.ComponentProps<typeof Button> {
@@ -18,7 +18,7 @@ const ThemedButton = forwardRef<View, ThemedButtonProps>((props, ref) => {
       onPress={onPress}
       className={`p-5 m-2 rounded-md w-11/12 ${color} ${className}`}
       accessibilityLabel={accessibilityLabel}>
-      <Text className={`text-center font-medium ${textColor}`}>{title}</Text>
+      <Text className={`text-center font-bold ${textColor}`}>{title}</Text>
     </Pressable>
   );
 });

@@ -4,10 +4,11 @@ import { View } from 'react-native';
 
 export default function Layout() {
   return (
-    <View className="flex-1">
+    <View className='flex-1'>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="login/index" />
-        <Stack.Screen name="register/index" />
+        <Stack.Screen name='login/index' />
+        <Stack.Screen name='register/index' />
+        <Stack.Screen name='recover/index' />
       </Stack>
     </View>
   );
