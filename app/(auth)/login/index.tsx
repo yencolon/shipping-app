@@ -29,7 +29,7 @@ const LoginForm = () => {
 
   return (
     <SafeAreaView className='flex-1'>
-      <View className='flex-1 justify-between items-center'>
+      <View className='flex-1 justify-start items-center'>
         <ThemedStackBar title='Iniciar Sesión' />
         <View className='w-full space-y-5 items-center'>
           <Controller
@@ -50,7 +50,7 @@ const LoginForm = () => {
                 onBlur={onBlur}
                 keyboardType='email-address'
                 accessibilityLabel='Introduce tu correo'
-                icon='mail-outline'
+                icon='mail'
                 error={errors.email?.message}
               />
             )}
@@ -75,7 +75,7 @@ const LoginForm = () => {
                 onBlur={onBlur}
                 secureTextEntry
                 accessibilityLabel='Introduce tu contraseña'
-                icon='lock-closed-outline'
+                icon='lock-closed'
                 error={errors.password?.message}
               />
             )}
@@ -88,7 +88,7 @@ const LoginForm = () => {
             </TouchableOpacity>
           </Link>
         </View>
-        <View className='w-full space-y-4 items-center'>
+        <View className='w-full space-y-4 items-center mt-10'>
           <ThemedButton
             title='Entrar'
             onPress={handleSubmit(onSubmit)}

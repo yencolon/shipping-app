@@ -15,15 +15,15 @@ const ThemedInputField: React.FC<ThemedInputFieldProps> = ({
   ...props
 }) => {
   return (
-    <View className='w-11/12 mt-2'>
+    <View className='w-11/12 mt-4'>
       <Text className='text-md font-bold'>{title}</Text>
       <View
-        className={`flex-row rounded-md border ${error ? 'border-red-500' : 'border-gray-300'}`}>
+        className={`flex-row rounded-md border-2 ${error ? 'border-red-500' : 'border-gray-300'}`}>
         <View className='flex justify-center items-center w-1/12'>
           <Ionicons name={icon} size={20} color={error ? 'red' : 'black'} />
         </View>
         <TextInput
-          className='w-11/12 pt-5 pb-5'
+          className='w-11/12 pt-4 pb-4 rounded-r-md border-none'
           placeholderTextColor='#999'
           accessible
           accessibilityLabel={title}

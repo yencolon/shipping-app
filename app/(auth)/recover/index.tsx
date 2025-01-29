@@ -26,8 +26,11 @@ const RecoverForm = () => {
 
   return (
     <SafeAreaView className='flex-1'>
-      <View className='flex-1 justify-between items-center'>
+      <View className='flex-1 justify-start items-center'>
         <ThemedStackBar title='Recuperar Cuenta' />
+        <Text className='font-bold text-5xl text-primary dark:text-primary-dark'>
+          Lorem ipsum dolor sit amet
+        </Text>
         <View className='w-full space-y-5 items-center'>
           <Controller
             control={control}
@@ -55,7 +58,7 @@ const RecoverForm = () => {
             defaultValue=''
           />
         </View>
-        <View className='w-full space-y-4 items-center'>
+        <View className='w-full space-y-4 items-center mt-10'>
           <ThemedButton
             title='Enviar'
             onPress={handleSubmit(onSubmit)}
