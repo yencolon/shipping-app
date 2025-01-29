@@ -1,32 +1,75 @@
 import ThemedButton from '@/components/ui/ThemedButton';
 import ThemedInputField from '@/components/ui/ThemedInputField';
-import ThemedStackBar from '@/components/ui/ThemedStackBar';
+import { Link, Stack, router } from 'expo-router';
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useForm, Controller } from 'react-hook-form';
+import ThemedStackBar from '@/components/ui/ThemedStackBar';
 
-export default function RecoverForm() {
-  return (
-    <View className='flex-1 justify-center items-center'>
-      {/* <View className='justify-center items-center'>
-        <Image source={require('@/assets/images/react-logo.png')} className='w-24 h-24' />
-        <Text className='font-bold text-2xl text-primary dark:text-primary-dark'>Recuperar</Text>
-      </View> */}
-      <ThemedStackBar title='Recuperar acceso' />
-      <View className='w-full space-y-4 items-center'>
-        <ThemedInputField
-          title='Recuperar acceso'
-          placeholder='Ingresa el correo que registrate'
-          //value={email}
-          //onChangeText={setEmail}
-          keyboardType='email-address'
-          accessibilityLabel='Ingresa el correo que registrate'
-        />
-        <ThemedButton
-          title='Recuperar'
-          //  onPress={handleLogin}
-          accessibilityLabel='Recuperar acceso'
-        />
-      </View>
-    </View>
-  );
+interface FormData {
+  email: string;
 }
+
+const RecoverForm = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const onSubmit = (data: FormData) => {
+    console.log('Recovering account for:', data.email);
+    Alert.alert('Success', 'Recovery email sent!');
+  };
+
+  return (
+    <SafeAreaView className='flex-1'>
+      <View className='flex-1 justify-between items-center'>
+        <ThemedStackBar title='Recuperar Cuenta' />
+        <View className='w-full space-y-5 items-center'>
+          <Controller
+            control={control}
+            rules={{
+              required: 'Correo es requerido',
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'Correo inválido',
+              },
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <ThemedInputField
+                title='Correo'
+                placeholder='Ingresa tu correo'
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                keyboardType='email-address'
+                accessibilityLabel='Introduce tu correo'
+                icon='mail-outline'
+                error={errors.email?.message}
+              />
+            )}
+            name='email'
+            defaultValue=''
+          />
+        </View>
+        <View className='w-full space-y-4 items-center'>
+          <ThemedButton
+            title='Enviar'
+            onPress={handleSubmit(onSubmit)}
+            accessibilityLabel='Enviar'
+          />
+          <Link href='/login' asChild>
+            <TouchableOpacity className='w-full items-center mt-4'>
+              <Text className='text-secondary underline'>¿Ya tienes una cuenta? Inicia sesión</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default RecoverForm;
