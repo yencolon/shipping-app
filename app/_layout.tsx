@@ -4,11 +4,12 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import AuthContext from '@/context/auth';
+import AuthContext from '@/context/authContext';
 
 import '../global.css';
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -36,6 +37,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name='(auth)' options={{ headerShown: false }} />
         <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+        <Stack.Screen name='(shopping)' />
         <Stack.Screen name='+not-found' />
       </Stack>
       <StatusBar style='auto' />

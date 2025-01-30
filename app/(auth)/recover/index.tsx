@@ -1,9 +1,8 @@
 import ThemedButton from '@/components/ui/ThemedButton';
 import ThemedInputField from '@/components/ui/ThemedInputField';
-import { Link, Stack, router } from 'expo-router';
+import { Link } from 'expo-router';
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useForm, Controller } from 'react-hook-form';
 import ThemedStackBar from '@/components/ui/ThemedStackBar';

@@ -6,7 +6,9 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useForm, Controller } from 'react-hook-form';
-import { Ionicons } from '@expo/vector-icons';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import registerSchema from '@/schemas/registerSchema';
 
 interface FormData {
   name: string;
@@ -23,6 +25,7 @@ const RegisterForm = () => {
     watch,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
+    resolver: yupResolver(registerSchema),
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
@@ -49,13 +52,8 @@ const RegisterForm = () => {
         <View className='w-full space-y-10 items-center'>
           <Controller
             control={control}
-            rules={{
-              required: 'Nombre es requerido',
-              minLength: {
-                value: 2,
-                message: 'El nombre debe tener al menos 2 caracteres',
-              },
-            }}
+            name='name'
+            defaultValue=''
             render={({ field: { onChange, onBlur, value } }) => (
               <ThemedInputField
                 title='Nombre completo'
@@ -69,19 +67,12 @@ const RegisterForm = () => {
                 error={errors.name?.message}
               />
             )}
-            name='name'
-            defaultValue=''
           />
 
           <Controller
             control={control}
-            rules={{
-              required: 'Correo electrónico es requerido',
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: 'Correo inválido',
-              },
-            }}
+            name='email'
+            defaultValue=''
             render={({ field: { onChange, onBlur, value } }) => (
               <ThemedInputField
                 title='Correo electrónico'
@@ -95,19 +86,12 @@ const RegisterForm = () => {
                 error={errors.email?.message}
               />
             )}
-            name='email'
-            defaultValue=''
           />
 
           <Controller
             control={control}
-            rules={{
-              required: 'Contraseña es requerida',
-              minLength: {
-                value: 6,
-                message: 'La contraseña debe tener al menos 6 caracteres',
-              },
-            }}
+            name='password'
+            defaultValue=''
             render={({ field: { onChange, onBlur, value } }) => (
               <ThemedInputField
                 title='Contraseña'
@@ -115,23 +99,18 @@ const RegisterForm = () => {
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
-                keyboardType='default'
                 secureTextEntry
                 accessibilityLabel='Ingresa una contraseña'
                 icon='lock-closed'
                 error={errors.password?.message}
               />
             )}
-            name='password'
-            defaultValue=''
           />
 
           <Controller
             control={control}
-            rules={{
-              required: 'Confirmar contraseña es requerido',
-              validate: (value) => value === password || 'Las contraseñas no coinciden',
-            }}
+            name='confirmPassword'
+            defaultValue=''
             render={({ field: { onChange, onBlur, value } }) => (
               <ThemedInputField
                 title='Confirmar Contraseña'
@@ -139,26 +118,18 @@ const RegisterForm = () => {
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
-                keyboardType='default'
                 secureTextEntry
                 accessibilityLabel='Confirma tu contraseña'
                 icon='lock-closed'
                 error={errors.confirmPassword?.message}
               />
             )}
-            name='confirmPassword'
-            defaultValue=''
           />
 
           <Controller
             control={control}
-            rules={{
-              required: 'Teléfono es requerido',
-              pattern: {
-                value: /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/,
-                message: 'Teléfono inválido',
-              },
-            }}
+            name='phone'
+            defaultValue=''
             render={({ field: { onChange, onBlur, value } }) => (
               <ThemedInputField
                 title='Teléfono'
@@ -172,8 +143,6 @@ const RegisterForm = () => {
                 error={errors.phone?.message}
               />
             )}
-            name='phone'
-            defaultValue=''
           />
         </View>
 

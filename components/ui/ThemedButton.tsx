@@ -1,16 +1,16 @@
-import { forwardRef } from "react";
-import { Button, GestureResponderEvent, Pressable, Text, View } from "react-native";
+import { forwardRef } from 'react';
+import { Button, GestureResponderEvent, Pressable, Text, View } from 'react-native';
 
 interface ThemedButtonProps extends React.ComponentProps<typeof Button> {
   className?: string;
-  variant?: "primary" | "secondary";
+  variant?: 'primary' | 'secondary';
 }
 
 const ThemedButton = forwardRef<View, ThemedButtonProps>((props, ref) => {
   const { accessibilityLabel, className, title, onPress, variant } = props;
 
-  const color = variant === "secondary" ? "bg-blue-200" : "bg-blue-300";
-  const textColor = variant === "secondary" ? "text-blue-600" : "text-blue-600";
+  const color = variant === 'secondary' ? 'bg-blue-200' : 'bg-blue-300';
+  const textColor = variant === 'secondary' ? 'text-blue-600' : 'text-blue-600';
 
   return (
     <Pressable
