@@ -16,7 +16,7 @@ const ThemedInputField: React.FC<ThemedInputFieldProps> = ({
 }) => {
   return (
     <View className='w-11/12 mt-4'>
-      <Text className='text-md font-bold'>{title}</Text>
+      <Text className='text-md font-bold text-primary'>{title}</Text>
       <View
         className={`flex-row rounded-md border-2 ${error ? 'border-red-500' : 'border-gray-300'}`}>
         <View className='flex justify-center items-center w-1/12'>

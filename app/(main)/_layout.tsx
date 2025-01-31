@@ -9,7 +9,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { Ionicons } from '@expo/vector-icons';
 import { useSession } from '@/context';
 
-export default function Layout() {
+export default function TabLayout() {
   const colorScheme = useColorScheme();
   const { session } = useSession();
   return (

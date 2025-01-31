@@ -36,7 +36,7 @@ const LoginForm = () => {
   };
 
   return (
-    <SafeAreaView className='flex-1'>
+    <SafeAreaView className='flex-1 bg-primary'>
       <View className='flex-1 justify-start items-center'>
         <ThemedStackBar title='Iniciar Sesión' />
         <View className='w-full space-y-5 items-center'>
@@ -86,12 +86,12 @@ const LoginForm = () => {
           />
           <Link href='/recover' asChild>
             <TouchableOpacity className='items-end w-11/12'>
-              <Text className='text-secondary underline'>¿Olvidaste tu contraseña?</Text>
+              <Text className='underline text-primary'>¿Olvidaste tu contraseña?</Text>
             </TouchableOpacity>
           </Link>
           <Link href='/register' asChild>
             <TouchableOpacity className='w-full items-center mt-4'>
-              <Text className='text-secondary underline'>¿No tienes cuenta? Crea una</Text>
+              <Text className='underline text-primary'>¿No tienes cuenta? Crea una</Text>
             </TouchableOpacity>
           </Link>
         </View>

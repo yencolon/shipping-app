@@ -16,10 +16,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Auth() {
   return (
-    <SafeAreaView className='flex-1 bg-primary-400'>
+    <SafeAreaView className='flex-1 bg-primary'>
       <View className='flex-1 justify-between items-center '>
         <View className='justify-center items-center'>
-          <Text className='font-bold text-5xl text-primary dark:text-primary-dark'>
+          <Text className='font-bold text-5xl text-primary'>
             Lorem ipsum dolor sit ramet, consectetur adipiscing elit
           </Text>
         </View>
