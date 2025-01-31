@@ -1,48 +1,45 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Slot, Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import 'react-native-reanimated';
-
+import React, { useEffect } from 'react';
+import { SessionProvider } from '@/context';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import AuthContext from '@/context/authContext';
 
+import 'react-native-reanimated';
 import '../global.css';
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
+  const [fontLoaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
   useEffect(() => {
-    if (loaded) {
+    if (fontLoaded) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [fontLoaded]);
 
-  if (!loaded) {
+  if (!fontLoaded) {
     return null;
   }
 
   return (
     // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    <AuthContext.Provider value={{ isAuth: false }}>
-      <Stack>
-        <Stack.Screen name='(auth)' options={{ headerShown: false }} />
-        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-        <Stack.Screen name='(shopping)' />
-        <Stack.Screen name='+not-found' />
-      </Stack>
-      <StatusBar style='auto' />
-    </AuthContext.Provider>
-
+    // <SessionProvider>
+    //   <Stack>
+    //     {/* <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+    //     <Stack.Screen name='(main)' options={{ headerShown: false }} /> */}
+    //     <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+    //     <Stack.Screen name='+not-found' />
+    //   </Stack>
+    //   <StatusBar style='auto' />
+    // </SessionProvider>
+    <Slot />
     // </ThemeProvider>
   );
 }

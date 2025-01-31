@@ -6,31 +6,30 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import loginSchema from '@/schemas/loginSchema';
-
-interface FormData {
-  email: string;
-  password: string;
-}
+import loginSchema, { LoginSchemaType } from '@/schemas/loginSchema';
+import { useSession } from '@/context';
 
 const LoginForm = () => {
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>({
+  } = useForm<LoginSchemaType>({
     resolver: yupResolver(loginSchema),
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
 
-  const onSubmit = async (data: FormData) => {
+  const { login } = useSession();
+
+  const onSubmit = async (data: LoginSchemaType) => {
     try {
       console.log('Logging in with:', data);
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      Alert.alert('Success', 'Logged in successfully!');
-      router.replace('/(shopping)');
+      if (login) {
+        await login(data);
+        router.replace('/(main)');
+      }
     } catch (error) {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     }
@@ -44,7 +43,7 @@ const LoginForm = () => {
           <Controller
             control={control}
             name='email'
-            defaultValue=''
+            defaultValue='mail@mail.com'
             render={({ field: { onChange, onBlur, value } }) => (
               <ThemedInputField
                 title='Correo'
@@ -62,7 +61,7 @@ const LoginForm = () => {
           <Controller
             control={control}
             name='password'
-            defaultValue=''
+            defaultValue='12345678'
             render={({ field: { onChange, onBlur, value } }) => (
               <ThemedInputField
                 title='Contraseña'

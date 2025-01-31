@@ -7,5 +7,5 @@ const loginSchema = yup.object().shape({
     .required('Contraseña es requerida')
     .min(6, 'La contraseña debe tener al menos 6 caracteres'),
 });
-
+export type LoginSchemaType = yup.InferType<typeof loginSchema>;
 export default loginSchema;

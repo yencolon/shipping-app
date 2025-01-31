@@ -24,4 +24,5 @@ const registerSchema = yup.object().shape({
     .matches(/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/, 'Teléfono inválido'),
 });
 
+export type RegisterSchemaType = yup.InferType<typeof registerSchema>;
 export default registerSchema;
