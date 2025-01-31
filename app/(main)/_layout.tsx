@@ -12,6 +12,7 @@ import { useSession } from '@/context';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const { session } = useSession();
+
   return (
     <Tabs
       screenOptions={{
@@ -31,7 +32,17 @@ export default function TabLayout() {
         name='index'
         options={{
           title: 'Productos',
-          tabBarIcon: ({ color }) => <Ionicons size={28} name='home-outline' color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              size={28}
+              name='home-outline'
+              color={color}
+              accessible={true}
+              accessibilityLabel={focused ? 'Productos, selected' : 'Home tab'}
+              accessibilityRole='button'
+              accessibilityState={{ selected: focused }}
+            />
+          ),
         }}
       />
       <Tabs.Screen
@@ -39,17 +50,35 @@ export default function TabLayout() {
         options={{
           title: 'Carrito',
           headerShown: false,
-          tabBarIcon: ({ color }) => <Ionicons size={28} name='cart-outline' color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              size={28}
+              name='cart-outline'
+              color={color}
+              accessible={true}
+              accessibilityLabel={focused ? 'Cart tab, selected' : 'Cart tab'}
+              accessibilityRole='button'
+              accessibilityState={{ selected: focused }}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name='profile/index'
         options={{
           title: 'Perfil',
-          href: session.authData ? '/' : '/(auth)',
+          href: session.authData ? '/profile' : '/(auth)',
           headerShown: false,
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={28} name='person-circle-outline' color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              size={28}
+              name='person-circle-outline'
+              color={color}
+              accessible={true}
+              accessibilityLabel={focused ? 'Profile tab, selected' : 'Profile tab'}
+              accessibilityRole='button'
+              accessibilityState={{ selected: focused }}
+            />
           ),
         }}
       />

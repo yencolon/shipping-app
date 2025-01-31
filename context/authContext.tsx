@@ -58,7 +58,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
     try {
       setSession({ ...session, loading: true });
       await timeout(1500);
-      const user: IUser = { name: 'John Doe' };
+      const user: IUser = { name: 'John Doe', email: auth.email, phone: '1234567890' };
       const token: string = 'super-secret-token';
       const authData: IAuthData = { user, token };
       await SecureStore.setItemAsync('session', JSON.stringify(authData));

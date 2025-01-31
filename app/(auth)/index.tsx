@@ -1,4 +1,4 @@
-import ThemedButton from '@/components/ui/ThemedButton';
+import ThemedButton from '@/components/ThemedButton';
 import { useSession } from '@/context';
 import { Link, router } from 'expo-router';
 import React, { useEffect } from 'react';
@@ -19,7 +19,7 @@ export default function Auth() {
     <SafeAreaView className='flex-1 bg-primary'>
       <View className='flex-1 justify-between items-center '>
         <View className='justify-center items-center'>
-          <Text className='font-bold text-5xl text-primary'>
+          <Text className='text-default font-bold text-5xl'>
             Lorem ipsum dolor sit ramet, consectetur adipiscing elit
           </Text>
         </View>

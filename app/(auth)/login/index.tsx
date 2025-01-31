@@ -1,5 +1,5 @@
-import ThemedButton from '@/components/ui/ThemedButton';
-import ThemedInputField from '@/components/ui/ThemedInputField';
+import ThemedButton from '@/components/ThemedButton';
+import ThemedInputField from '@/components/ThemedInputField';
 import ThemedStackBar from '@/components/ui/ThemedStackBar';
 import { Link, router } from 'expo-router';
 import React from 'react';

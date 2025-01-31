@@ -3,5 +3,5 @@ import { Redirect } from 'expo-router';
 import React from 'react';
 
 export default function App() {
-  return <Redirect href='/(auth)' />;
+  return <Redirect href='/(main)' />;
 }

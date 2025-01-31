@@ -15,7 +15,7 @@ export default function Main() {
   };
 
   return (
-    <SafeAreaView className='flex-1 bg-red-300'>
+    <SafeAreaView className='flex-1 bg-primary'>
       <Text>Shopping</Text>
       <Button title='log out' onPress={handleLogout}></Button>
     </SafeAreaView>

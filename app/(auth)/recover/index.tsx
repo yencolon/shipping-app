@@ -1,5 +1,5 @@
-import ThemedButton from '@/components/ui/ThemedButton';
-import ThemedInputField from '@/components/ui/ThemedInputField';
+import ThemedButton from '@/components/ThemedButton';
+import ThemedInputField from '@/components/ThemedInputField';
 import { Link } from 'expo-router';
 import React from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
