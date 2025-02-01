@@ -5,9 +5,10 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 interface ThemedStackBarProps {
   title: string;
+  noBack?: boolean;
 }
 
-export default function ThemedStackBar({ title = '' }: ThemedStackBarProps) {
+export default function ThemedStackBar({ title = '', noBack = false }: ThemedStackBarProps) {
   const backIcon = Platform.OS === 'ios' ? 'chevron-back' : 'arrow-back-sharp';
   return (
     <Stack.Screen
@@ -19,14 +20,20 @@ export default function ThemedStackBar({ title = '' }: ThemedStackBarProps) {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-        headerLeft: () => (
-          <Ionicons
-            name={backIcon}
-            size={25}
-            color={Colors.light.text}
-            onPress={() => router.back()}
-          />
-        ),
+        headerLeft: () => {
+          if (noBack) {
+            return null;
+          }
+
+          return (
+            <Ionicons
+              name={backIcon}
+              size={25}
+              color={Colors.light.text}
+              onPress={() => router.back()}
+            />
+          );
+        },
       }}
     />
   );

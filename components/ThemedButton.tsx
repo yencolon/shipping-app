@@ -9,16 +9,13 @@ interface ThemedButtonProps extends React.ComponentProps<typeof Button> {
 const ThemedButton = forwardRef<View, ThemedButtonProps>((props, ref) => {
   const { accessibilityLabel, className, title, onPress, variant } = props;
 
-  const color = variant === 'secondary' ? 'bg-blue-200' : 'bg-blue-300';
-  const textColor = variant === 'secondary' ? 'text-blue-600' : 'text-blue-600';
-
   return (
     <Pressable
       ref={ref}
       onPress={onPress}
-      className={`p-5 m-2 rounded-md w-11/12 ${color} ${className}`}
+      className={`p-5 m-2 rounded-md w-11/12  ${className}`}
       accessibilityLabel={accessibilityLabel}>
-      <Text className={`text-center font-bold ${textColor}`}>{title}</Text>
+      <Text className={`text-center font-bold text-white`}>{title}</Text>
     </Pressable>
   );
 });

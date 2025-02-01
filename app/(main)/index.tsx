@@ -1,3 +1,4 @@
+import ProductCard from '@/components/ProductCard';
 import { useSession } from '@/context';
 import { router } from 'expo-router';
 import React from 'react';
@@ -16,8 +17,11 @@ export default function Main() {
 
   return (
     <SafeAreaView className='flex-1 bg-primary'>
-      <Text>Shopping</Text>
-      <Button title='log out' onPress={handleLogout}></Button>
+      <View className='flex flex-row flex-wrap justify-between items-center p-4 gap-4'>
+        {[1, 2, 3, 4].map((item) => (
+          <ProductCard key={item} />
+        ))}
+      </View>
     </SafeAreaView>
   );
 }
