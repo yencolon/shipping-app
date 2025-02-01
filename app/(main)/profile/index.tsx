@@ -78,7 +78,7 @@ export default function Profile() {
           title='Cerrar sesión'
           onPress={handleSignOut}
           accessibilityLabel='Cerrar sesión de tu cuenta'
-          className='mt-6 bg-red-600'
+          className='mt-6 !bg-red-500'
         />
 
         {/* Footer */}
