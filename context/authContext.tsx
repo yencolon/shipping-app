@@ -6,9 +6,8 @@ import React, {
   useEffect,
 } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { IAuthContext, IAuthData, ISessionState } from '@/interfaces/context';
+import { IAuthContext, IAuthData, ISessionState } from '@/interfaces/context/auth';
 import { IUser } from '@/interfaces/rest';
-import { RegisterSchemaType } from '@/schemas/registerSchema';
 import { timeout } from '@/utils';
 import { LoginSchemaType } from '@/schemas/loginSchema';
 
@@ -18,17 +17,15 @@ const initialSession: ISessionState = {
   error: undefined,
 };
 
-const AuthContext = createContext<IAuthContext>({ session: initialSession });
+const AuthContext = createContext<IAuthContext>({
+  session: initialSession,
+  login: () => {},
+  logout: () => {},
+});
 
 // This hook can be used to access the user info.
 export function useSession() {
   const value = useContext(AuthContext);
-  if (process.env.NODE_ENV !== 'production') {
-    if (!value) {
-      throw new Error('useSession must be wrapped in a <SessionProvider />');
-    }
-  }
-
   return value;
 }
 
@@ -41,6 +38,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
     }
   }, []);
 
+  // Check if the user is already logged in
   const checkAuthData = async () => {
     console.log('checkSession');
     setSession({ ...session, loading: true });
@@ -54,6 +52,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
     });
   };
 
+  // Login function
   const login = async (auth: LoginSchemaType) => {
     try {
       setSession({ ...session, loading: true });
@@ -71,6 +70,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
     }
   };
 
+  // Logout function
   const logout = async () => {
     try {
       setSession({ ...session, loading: true });

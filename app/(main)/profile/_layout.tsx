@@ -21,9 +21,7 @@ export default function Layout() {
 
   const handleSignOut = async () => {
     try {
-      if (logout) {
-        await logout();
-      }
+      await logout();
     } catch (error) {
       Alert.alert('Error', 'Unable to sign out. Please try again.');
     }

@@ -1,4 +1,4 @@
-import { IUser } from "../rest";
+import { IUser } from "../../rest";
 
 export interface IAuthData {
   user?: IUser;

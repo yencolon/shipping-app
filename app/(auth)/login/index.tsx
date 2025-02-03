@@ -26,10 +26,9 @@ const LoginForm = () => {
     try {
       console.log('Logging in with:', data);
       // Simulate API call
-      if (login) {
-        await login(data);
-        router.replace('/(main)');
-      }
+
+      await login(data);
+      router.replace('/(main)');
     } catch (error) {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     }

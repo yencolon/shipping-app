@@ -9,6 +9,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import 'react-native-reanimated';
 import '../global.css';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { CartProvider } from '@/context/CartContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,13 +33,15 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <SessionProvider>
-        <Stack>
-          <Stack.Screen name='(auth)' options={{ headerShown: false }} />
-          <Stack.Screen name='(main)' options={{ headerShown: false }} />
-          <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-          <Stack.Screen name='+not-found' />
-        </Stack>
-        <StatusBar style='auto' />
+        <CartProvider>
+          <Stack>
+            <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+            <Stack.Screen name='(main)' options={{ headerShown: false }} />
+            <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+            <Stack.Screen name='+not-found' />
+          </Stack>
+          <StatusBar style='auto' />
+        </CartProvider>
       </SessionProvider>
     </ThemeProvider>
   );

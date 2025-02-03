@@ -1,8 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Image, TextInput, Text, View } from 'react-native';
+import { Image, TextInput, Text, View, TouchableOpacity } from 'react-native';
 
-export default function ProductCard() {
+interface IProductCardProps {
+  addToCart: () => void;
+}
+
+export default function ProductCard({ addToCart }: IProductCardProps) {
   return (
     <View className='w-5/12 bg-slate-100 rounded-lg items-center'>
       <View className='flex-grow w-full h-40'>
@@ -15,9 +19,9 @@ export default function ProductCard() {
             <Text className='text-default text-xs'>1kg</Text>
             <Text className='text-defaultBold'>$20</Text>
           </View>
-          <View>
+          <TouchableOpacity onPress={addToCart}>
             <Ionicons name='add-circle' size={30} color='black' />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
