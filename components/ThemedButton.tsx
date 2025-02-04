@@ -3,18 +3,19 @@ import { Button, GestureResponderEvent, Pressable, Text, View } from 'react-nati
 
 interface ThemedButtonProps extends React.ComponentProps<typeof Button> {
   className?: string;
-  variant?: 'primary' | 'secondary';
+  textClassName?: string;
 }
 
 const ThemedButton = forwardRef<View, ThemedButtonProps>((props, ref) => {
-  const { accessibilityLabel, className, title, onPress, variant } = props;
+  const { accessibilityLabel, className, textClassName, title, onPress } = props;
+
   return (
     <Pressable
       ref={ref}
       onPress={onPress}
-      className={`p-5 m-2 rounded-md w-11/12 bg-blue-400 ${className}`}
+      className={`p-5 rounded-md w-11/12 bg-blue-400 ${className}`}
       accessibilityLabel={accessibilityLabel}>
-      <Text className={`text-center font-bold text-white`}>{title}</Text>
+      <Text className={`text-center font-bold text-white ${textClassName}`}>{title}</Text>
     </Pressable>
   );
 });

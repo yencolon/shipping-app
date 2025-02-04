@@ -3,7 +3,7 @@ import { ScrollView, TouchableOpacity, Text } from 'react-native';
 
 export default function HorizontalScrollView() {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} className='bg-primary'>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <TouchableOpacity className='bg-green-400 p-8 m-2 rounded-2xl'>
         <Text>Snacks</Text>
       </TouchableOpacity>

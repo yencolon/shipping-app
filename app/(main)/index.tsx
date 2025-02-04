@@ -30,8 +30,8 @@ export default function Main() {
 
   return (
     <SafeAreaView className='flex-1 bg-primary'>
-      <SearchBar />
-      <View className='flex flex-row flex-wrap justify-between items-center p-4 gap-4'>
+      <View className='bg-primary z-10 border-b border-default'>
+        <SearchBar />
         <HorizontalScrollView />
       </View>
 
@@ -42,6 +42,7 @@ export default function Main() {
         renderItem={({ item, index, separators }) => <ProductCard addToCart={handleAddToCart} />}
         numColumns={2}
         keyExtractor={(item) => item.toString()}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );

@@ -4,7 +4,8 @@ import { useSession } from '@/context';
 import { Ionicons } from '@expo/vector-icons';
 import { Link, Redirect, router, Slot, Stack } from 'expo-router';
 import React, { useEffect } from 'react';
-import { Alert, SafeAreaView, Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default function Layout() {
@@ -46,7 +47,7 @@ export default function Layout() {
 
         <Slot />
 
-        <View>
+        <View className='flex flex-col items-center'>
           {/* Sign Out Button */}
           <ThemedButton
             title='Cerrar sesión'

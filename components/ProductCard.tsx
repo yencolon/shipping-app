@@ -8,7 +8,7 @@ interface IProductCardProps {
 
 export default function ProductCard({ addToCart }: IProductCardProps) {
   return (
-    <View className='w-5/12 bg-slate-100 rounded-lg items-center'>
+    <View className='w-5/12 bg-secondary rounded-lg items-center'>
       <View className='flex-grow w-full h-40'>
         <Image source={require('@/assets/images/icon.png')} className='w-full h-full rounded-lg' />
       </View>

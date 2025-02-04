@@ -3,11 +3,12 @@ import ThemedInputField from '@/components/ThemedInputField';
 import ThemedStackBar from '@/components/ui/ThemedStackBar';
 import { Link, router } from 'expo-router';
 import React from 'react';
-import { View, Text, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import loginSchema, { LoginSchemaType } from '@/schemas/loginSchema';
 import { useSession } from '@/context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const LoginForm = () => {
   const {

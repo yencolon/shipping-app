@@ -8,6 +8,7 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Ionicons } from '@expo/vector-icons';
 import { useSession } from '@/context';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
