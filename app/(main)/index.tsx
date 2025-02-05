@@ -21,10 +21,14 @@ export default function Main() {
   const handleAddToCart = () => {
     console.log('Add to cart' + cart);
     addToCart({
-      id: '1',
-      name: 'Harina',
+      product: {
+        id: '1',
+        name: 'Product 1',
+        price: 100,
+        image: 'https://via.placeholder.com/150',
+        description: 'Description of product 1',
+      },
       quantity: 1,
-      price: 20,
     });
   };
 

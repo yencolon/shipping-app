@@ -8,6 +8,7 @@ const CartContext = createContext<ICartContext>({
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
+  updateCartItemQuantity: () => {},
 });
 
 export function useCart() {
@@ -23,11 +24,11 @@ export function CartProvider({ children }: PropsWithChildren) {
   const addToCart = (item: IProductCart) => {
     setCart((prevCart) => {
       // Check if the item already exists in the cart
-      const existingItem = prevCart.find((i) => i.id === item.id);
+      const existingItem = prevCart.find((i) => i.product.id === item.product.id);
       if (existingItem) {
         // If the item exists, increase its quantity
         return prevCart.map((i) =>
-          i.id === item.id ? { ...i, quantity: (i.quantity || 1) + 1 } : i,
+          i.product.id === item.product.id ? { ...i, quantity: (i.quantity || 1) + 1 } : i,
         );
       }
       // If the item doesn't exist, add it to the cart
@@ -39,14 +40,14 @@ export function CartProvider({ children }: PropsWithChildren) {
   const removeFromCart = (itemId: string) => {
     setCart((prevCart) => {
       // Filter out the item with the given ID
-      return prevCart.filter((item) => item.id !== itemId);
+      return prevCart.filter((item) => item.product.id !== itemId);
     });
   };
 
   // Function to update the quantity of an item in the cart
   const updateCartItemQuantity = (itemId: string, quantity: number) => {
     setCart((prevCart) => {
-      return prevCart.map((item) => (item.id === itemId ? { ...item, quantity } : item));
+      return prevCart.map((item) => (item.product.id === itemId ? { ...item, quantity } : item));
     });
   };
 
@@ -56,6 +57,7 @@ export function CartProvider({ children }: PropsWithChildren) {
         cart,
         addToCart,
         removeFromCart,
+        updateCartItemQuantity,
       }}>
       {children}
     </CartContext.Provider>

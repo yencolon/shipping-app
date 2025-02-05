@@ -1,6 +1,6 @@
+import { IProduct } from "@/interfaces/rest/IProduct";
+
 export interface IProductCart {
-  id: string;
-  name: string;
-  price: number;
+  product: IProduct;
   quantity: number;
 }
