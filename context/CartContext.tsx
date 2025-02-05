@@ -9,6 +9,7 @@ const CartContext = createContext<ICartContext>({
   addToCart: () => {},
   removeFromCart: () => {},
   updateCartItemQuantity: () => {},
+  getTotal: () => 0,
 });
 
 export function useCart() {
@@ -51,6 +52,10 @@ export function CartProvider({ children }: PropsWithChildren) {
     });
   };
 
+  const getTotal = () => {
+    return cart.reduce((acc, item) => acc + item.product.price * (item.quantity || 1), 0);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -58,6 +63,7 @@ export function CartProvider({ children }: PropsWithChildren) {
         addToCart,
         removeFromCart,
         updateCartItemQuantity,
+        getTotal,
       }}>
       {children}
     </CartContext.Provider>

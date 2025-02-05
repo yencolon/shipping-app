@@ -7,8 +7,9 @@ import { View, Text, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Cart() {
-  const { cart, updateCartItemQuantity, removeFromCart } = useCart();
+  const { cart, getTotal, updateCartItemQuantity, removeFromCart } = useCart();
   const bottom = useBottomTabOverflow();
+  console.log('Render Cart');
 
   return (
     <SafeAreaView className='flex-1 bg-primary overflow-hidden'>
@@ -32,7 +33,7 @@ export default function Cart() {
       <View
         className='flex flex-row justify-between items-center px-2 py-1 border-t border-default'
         style={{ paddingBottom: bottom }}>
-        <Text className='text-default'>Total: 450</Text>
+        <Text className='text-default'>Total: {getTotal()}</Text>
         <ThemedButton
           title='Pagar'
           className='w-2/6 h-16 mb-2'
